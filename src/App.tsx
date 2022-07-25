@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { getBlockByNumber, getTransactionByHash } from './api/etherscan';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  useEffect(() => {
+    const getBlock = async () => {
+      const res = await getBlockByNumber('2165403');
+      console.log('res: ', res);
+      console.log('res: ', res.data.result.blockNumber);
+    };
+
+    getBlock();
+
+    const getTransaction = async () => {
+      const res = await getTransactionByHash('0xfdsafasf');
+    };
+    getTransaction();
+  }, []);
+
+  return <div className="App">test</div>;
 }
 
 export default App;

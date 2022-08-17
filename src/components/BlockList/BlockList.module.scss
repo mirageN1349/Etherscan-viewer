@@ -1,0 +1,29 @@
+.blocks {
+  margin: 20px;
+  width: 1200px;
+  background: #4f4f4f;
+  box-shadow: 2px 5px 25px -3px rgba(180, 180, 180, 0.25);
+  border-radius: 20px;
+  padding: 20px;
+
+  .title {
+    margin: 0;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 14px;
+  }
+
+  .blockList {
+    display: flex;
+    overflow: hidden;
+    overflow-x: auto;
+    padding-left: 20px;
+    margin: 0 -20px;
+  }
+  .block {
+    margin-right: 30px;
+  }
+  .emptyMsg {
+    color: #fff;
+  }
+}

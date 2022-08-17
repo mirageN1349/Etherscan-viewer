@@ -1,0 +1,45 @@
+@import '../../styles/variables.scss';
+
+.block {
+  width: 150px;
+  padding: 11px;
+  background: #2e3035;
+  border-radius: 10px;
+
+  .header {
+    .hash {
+      font-weight: 500;
+      font-size: 18px;
+      color: $white;
+      margin-bottom: 7px;
+    }
+    .date {
+      color: #939cb0;
+      font-size: 14px;
+      margin-bottom: 9px;
+    }
+  }
+
+  .img {
+    margin-bottom: 7px;
+  }
+
+  .footer {
+    .count,
+    .gasSum {
+      margin-bottom: 4px;
+    }
+
+    .count {
+      font-size: 16px;
+      color: $white;
+      margin-bottom: 4px;
+    }
+
+    .gasSum,
+    .valueSum {
+      font-size: 13px;
+      color: #939cb0;
+    }
+  }
+}

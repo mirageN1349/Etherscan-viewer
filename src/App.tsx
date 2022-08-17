@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { getBlockByNumber, getTransactionByHash } from './api/etherscan';
+import { Block } from './components/Block/Block';
+import { BlockList } from './components/BlockList/BlockList';
 
 function App() {
   useEffect(() => {
@@ -9,15 +11,33 @@ function App() {
       console.log('res: ', res.data.result.blockNumber);
     };
 
-    getBlock();
-
     const getTransaction = async () => {
       const res = await getTransactionByHash('0xfdsafasf');
     };
+
     getTransaction();
+    getBlock();
   }, []);
 
-  return <div className="App">test</div>;
+  return (
+    <div className="App">
+      <BlockList
+        blocks={[
+          { blockNumber: '1', timeStamp: '3' },
+          { blockNumber: '1', timeStamp: '3' },
+          { blockNumber: '1', timeStamp: '3' },
+          { blockNumber: '1', timeStamp: '3' },
+          { blockNumber: '1', timeStamp: '3' },
+          { blockNumber: '1', timeStamp: '3' },
+          { blockNumber: '1', timeStamp: '3' },
+          { blockNumber: '1', timeStamp: '3' },
+          { blockNumber: '1', timeStamp: '3' },
+          { blockNumber: '1', timeStamp: '3' },
+          { blockNumber: '1', timeStamp: '3' },
+        ]}
+      />
+    </div>
+  );
 }
 
 export default App;

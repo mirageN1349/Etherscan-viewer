@@ -1,1 +1,16 @@
 @import '~normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Montserrat;
+}
+
+p {
+  margin: 0;
+}

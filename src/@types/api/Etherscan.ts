@@ -1,5 +1,5 @@
 export type EtherscanResult<T> = {
   message: string;
-  status: number;
+  status: string;
   result: T;
 };

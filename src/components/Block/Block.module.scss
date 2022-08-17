@@ -5,6 +5,11 @@
   padding: 11px;
   background: #2e3035;
   border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 3px 4px 7px 8px rgba(34, 60, 80, 0.2);
+  }
 
   .header {
     .hash {

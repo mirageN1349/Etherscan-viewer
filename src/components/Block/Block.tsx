@@ -4,14 +4,15 @@ import ethIcon from '../../assets/block/eth_icon.svg';
 type Props = {
   blockNumber: UniqueString;
   timeStamp: SecondsTimestamp;
+  tsxCount: number;
 };
 
-export function Block({ blockNumber, timeStamp }: Props) {
+export function Block({ blockNumber, timeStamp, tsxCount }: Props) {
   return (
     <div className={s.block}>
       <div className={s.header}>
-        <p className={s.hash}>0xafb...as4fs</p>
-        <p className={s.date}>28 авг</p>
+        <p className={s.hash}>{blockNumber}</p>
+        <p className={s.date}>{new Date(+timeStamp * 1000).toDateString()}</p>
       </div>
 
       <div className={s.img}>
@@ -19,7 +20,7 @@ export function Block({ blockNumber, timeStamp }: Props) {
       </div>
 
       <div className={s.footer}>
-        <p className={s.count}>txs count: 100</p>
+        <p className={s.count}>txs count: {tsxCount}</p>
         <p className={s.gasSum}>gas sum: 50 </p>
         <p className={s.valueSum}>value sum: 100</p>
       </div>

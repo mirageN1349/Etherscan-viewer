@@ -14,7 +14,7 @@ export function BlockList({ blocks }: Props) {
         {!blocks.length && <p className={s.emptyMsg}>Блоков нет</p>}
         {blocks.map(block => (
           <div key={block.timeStamp} className={s.block}>
-            <Block blockNumber={block.blockNumber} timeStamp={block.timeStamp} />
+            <Block tsxCount={block.tsxCount} blockNumber={block.blockNumber} timeStamp={block.timeStamp} />
           </div>
         ))}
       </div>

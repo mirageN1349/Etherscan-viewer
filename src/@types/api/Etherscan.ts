@@ -1,5 +1,7 @@
+import { ResponseStatus } from './ApiResponse';
+
 export type EtherscanResult<T> = {
   message: string;
-  status: string;
+  status: ResponseStatus;
   result: T;
 };

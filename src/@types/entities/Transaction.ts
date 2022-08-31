@@ -5,4 +5,5 @@ export type Transaction = {
   to: Address;
   gas: Hex;
   value: Hex;
+  hash: Hex;
 };

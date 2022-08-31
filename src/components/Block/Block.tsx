@@ -1,18 +1,34 @@
 import s from './Block.module.scss';
 import ethIcon from '../../assets/block/eth_icon.svg';
+import { useState } from 'react';
+import classNames from 'classnames';
 
 type Props = {
-  blockNumber: UniqueString;
+  hash: Hex;
+  number: Hex;
   timeStamp: SecondsTimestamp;
   tsxCount: number;
+  onBlockClick: (blockNumber: Hex) => void;
 };
 
-export function Block({ blockNumber, timeStamp, tsxCount }: Props) {
+export function Block({ hash, timeStamp, tsxCount, onBlockClick, number }: Props) {
+  const [isActive, setIsActive] = useState(false);
+  const onClick = () => {
+    setIsActive(true);
+    onBlockClick(number);
+  };
+
   return (
-    <div className={s.block}>
+    <div
+      className={classNames(s.block, {
+        [s.active]: isActive,
+      })}
+      onClick={onClick}
+    >
       <div className={s.header}>
-        <p className={s.hash}>{blockNumber}</p>
-        <p className={s.date}>{new Date(+timeStamp * 1000).toDateString()}</p>
+        {/* TODO: добавить троеточие посередине */}
+        <p className={s.hash}>{hash}</p>
+        <p className={s.date}>{new Date(+timeStamp * 1000).toLocaleString()}</p>
       </div>
 
       <div className={s.img}>

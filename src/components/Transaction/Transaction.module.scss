@@ -1,0 +1,24 @@
+.transaction {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #fff;
+  background: #2e3035;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 400;
+
+  p {
+    margin-right: 10px;
+    white-space: nowrap;
+  }
+
+  .hash {
+    word-break: break-all;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

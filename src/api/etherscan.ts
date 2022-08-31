@@ -1,15 +1,17 @@
 import { ApiResponse } from '../@types/api/ApiResponse';
 import { Block } from '../@types/entities/Block';
 import { Transaction } from '../@types/entities/Transaction';
+import { toHexString } from '../utils/toHexString';
 
 import baseApi from './base';
 
 export const getBlockByNumber = (blockNumber: UniqueString): ApiResponse<Block> => {
   return baseApi.get('', {
     params: {
-      module: 'block',
-      action: 'getblockreward',
-      blockno: blockNumber,
+      module: 'proxy',
+      action: 'eth_getBlockByNumber',
+      tag: toHexString(blockNumber),
+      boolean: true,
     },
   });
 };
@@ -19,7 +21,7 @@ export const getBlockTsxCountByNumber = (blockNumber: UniqueString): ApiResponse
     params: {
       module: 'proxy',
       action: 'eth_getBlockTransactionCountByNumber',
-      tag: '0x' + parseInt(blockNumber, 10).toString(16),
+      tag: toHexString(blockNumber),
     },
   });
 };

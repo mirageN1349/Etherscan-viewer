@@ -1,5 +1,9 @@
+import { Transaction } from './Transaction';
+
 export type Block = {
-  blockNumber: UniqueString;
-  timeStamp: SecondsTimestamp;
+  number: Hex;
+  hash: Hex;
+  timestamp: SecondsTimestamp;
   tsxCount: number;
+  transactions: Transaction[];
 };

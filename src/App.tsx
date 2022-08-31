@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { SingleValue } from 'react-select';
 import { Block } from './@types/entities/Block';
-import { getBlockByNumber, getBlockTsxCountByNumber, getLastBlockNumber } from './api/etherscan';
+import { Transaction } from './@types/entities/Transaction';
+import { getBlockByNumber, getLastBlockNumber } from './api/etherscan';
 import { BlockList } from './components/BlockList/BlockList';
+import { TransactionList } from './components/TransactionList/TransactionList';
 import { SelectOption } from './components/UI/Select/Select';
+import { hexToDecimalNumber } from './utils/toDecimalNumber';
 import { wait } from './utils/wait';
 
 const options = [
@@ -28,6 +31,7 @@ const options = [
 function App() {
   const REFRESH_RATE = 3000;
   const [blocks, setBlocks] = useState<Block[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [value, setValue] = useState(5);
 
@@ -47,11 +51,12 @@ function App() {
         const { data } = await getBlockByNumber(n);
 
         if (data.status === 'error') continue;
-        const { data: tsxCountData } = await getBlockTsxCountByNumber(data.result.blockNumber);
+
+        const tsxCount = data.result.transactions.length;
 
         const block: Block = {
           ...data.result,
-          tsxCount: +tsxCountData.result,
+          tsxCount,
         };
 
         setBlocks(prev => [...prev, block]);
@@ -67,17 +72,18 @@ function App() {
     const refetchLastBlock = async () => {
       if (blocks.length < 1) return;
       const lastBLock = blocks.at(0) as Block;
-      const nextBlockNumber = String(+lastBLock.blockNumber + 1);
+      const nextBlockNumber = String(hexToDecimalNumber(lastBLock.number) + 1);
+
       try {
         setIsLoading(true);
         const { data } = await getBlockByNumber(nextBlockNumber);
         if (data.status === 'error') return;
 
-        const { data: tsxCountData } = await getBlockTsxCountByNumber(data.result.blockNumber);
+        const tsxCount = data.result.transactions.length;
 
         const block: Block = {
           ...data.result,
-          tsxCount: +tsxCountData.result,
+          tsxCount,
         };
 
         setBlocks(prev => {
@@ -100,9 +106,22 @@ function App() {
     newOption && setValue(newOption.value);
   };
 
+  const onBlockClick = (blockNumber: Hex) => {
+    const tsx = blocks.find(b => b.number === blockNumber)?.transactions || [];
+    setTransactions(tsx);
+  };
+
   return (
     <div className="App">
-      <BlockList onChange={onSelect} value={value} options={options} isLoading={isLoading} blocks={blocks} />
+      <BlockList
+        onBlockClick={onBlockClick}
+        onChange={onSelect}
+        value={value}
+        options={options}
+        isLoading={isLoading}
+        blocks={blocks}
+      />
+      <TransactionList transactions={transactions} />
     </div>
   );
 }

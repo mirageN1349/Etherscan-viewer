@@ -5,3 +5,5 @@ export type EtherscanResult<T> = {
   status: ResponseStatus;
   result: T;
 };
+
+export type EtherscanStatus = '0' | '1';

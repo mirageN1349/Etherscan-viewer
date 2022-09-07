@@ -3,11 +3,13 @@ import s from './Transaction.module.scss';
 
 type Props = {
   hash: Hex;
+  onTsxClick: (hash: Hash) => void;
 };
 
-export function Transaction({ hash }: Props) {
+export function Transaction({ hash, onTsxClick }: Props) {
+  const onClick = () => onTsxClick(hash);
   return (
-    <div className={s.transaction}>
+    <div onClick={onClick} className={s.transaction}>
       <p>Tx hash</p> <p className={s.hash}>{hash}</p>
     </div>
   );

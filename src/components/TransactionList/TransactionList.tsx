@@ -1,15 +1,16 @@
 import React from 'react';
 import { Transaction as ITransaction } from '../../@types/entities/Transaction';
-import { CardLayout } from '../../layouts/CardLayout';
+import { CardLayout } from '../../layouts/Card/CardLayout';
 import { Transaction } from '../Transaction/Transaction';
 
 import s from './TransactionList.module.scss';
 
 type Props = {
   transactions: ITransaction[];
+  onTsxClick: (hash: Hash) => void;
 };
 
-export function TransactionList({ transactions }: Props) {
+export function TransactionList({ transactions, onTsxClick }: Props) {
   return (
     <CardLayout sx={{ width: '750px', overflowY: 'auto', height: '320px' }}>
       <div className={s.transactions}>
@@ -20,7 +21,7 @@ export function TransactionList({ transactions }: Props) {
         </div>
         {!transactions.length && <p className="emptyMsg">Транзакций нет</p>}
         {transactions.map(({ hash }) => (
-          <Transaction hash={hash} />
+          <Transaction onTsxClick={onTsxClick} hash={hash} />
         ))}
       </div>
     </CardLayout>

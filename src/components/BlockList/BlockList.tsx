@@ -1,6 +1,6 @@
 import { SingleValue } from 'react-select';
 import { Block as IBlock } from '../../@types/entities/Block';
-import { CardLayout } from '../../layouts/CardLayout';
+import { CardLayout } from '../../layouts/Card/CardLayout';
 import { Block } from '../Block/Block';
 import { Loader } from '../UI/Loader/Loader';
 import { Select, SelectOption } from '../UI/Select/Select';
